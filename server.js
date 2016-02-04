@@ -243,6 +243,7 @@ if ( process.env.NODE_ENV === 'test' ) {
   module.exports = app;
 }
 else {
-  console.log('Shortly is listening on 4568');
-  app.listen(4568);
+  var port = process.env.PORT || 3468;
+  console.log('Shortly is listening on '+ port);
+  app.listen(port);
 }
