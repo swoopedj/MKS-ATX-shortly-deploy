@@ -79,14 +79,14 @@ app.use(express.static(__dirname + '/public'));
 //
 app.get('/', function(req, res) {
   if ( ! req.session ) {
-    return res.redirect('/sign-in');
+    return res.redirect('/signin');
   }
   res.render('index');
 });
 
 app.get('/create', function(req, res) {
   if ( ! req.session ) {
-    return res.redirect('/sign-in');
+    return res.redirect('/signin');
   }
   res.render('index');
 });
@@ -142,11 +142,11 @@ app.post('/links', function(req, res) {
 // Write your authentication routes here
 /************************************************************/
 
-app.get('/sign-up', function (req, res) {
+app.get('/signup', function (req, res) {
   return res.render('signup');
 });
 
-app.post('/sign-up', function(req, res) {
+app.post('/signup', function(req, res) {
 
   var username = req.body.username;
   var password = req.body.password;
@@ -162,23 +162,23 @@ app.post('/sign-up', function(req, res) {
     .catch(function (err) {
       if ( err.message === 'username_is_taken' ) {
         console.log("Username is taken:", username)
-        res.redirect('/sign-up');
+        res.redirect('/signup');
       }
       else {
         res.status(500).send(err.message)
       }
     })
-  
+
 });
 
 
-app.get('/sign-in', function (req, res) {
+app.get('/signin', function (req, res) {
 
   res.render('signin');
-  
+
 });
 
-app.post('/sign-in', function(req, res) {
+app.post('/signin', function(req, res) {
 
   var username = req.body.username;
   var password = req.body.password;
@@ -197,17 +197,17 @@ app.post('/sign-in', function(req, res) {
     .catch(function (err) {
       if ( err.message === 'no_such_user' ) {
         console.log("No such username:", username)
-        res.redirect('/sign-in')
+        res.redirect('/signin')
       }
       else if ( err.message === 'password_does_not_match' ) {
         console.log("Incorrect password.")
-        res.redirect('/sign-in');
+        res.redirect('/signin');
       }
       else {
         res.status(500).send(err.message);
       }
     });
-  
+
 });
 
 
