@@ -7,7 +7,6 @@
   "license": "Proprietary",
   "private": true,
   "scripts": {
-    // "start": "./node_modules/.bin/nodemon --ignore node_modules server.js",
     "start": "node server.js",
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --bail --reporter nyan test/*-spec.js;"
   },
